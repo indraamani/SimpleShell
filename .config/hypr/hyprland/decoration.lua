@@ -1,24 +1,33 @@
 hl.config({
     decoration = {
-        rounding = 6,
-        rounding_power = 4,
-
-        shadow = {
-            enabled = true,
-            range = 4,
-            render_power = 3,
-            color = "rgba(1a1a1aee)",
-        },
+        -- 2 = circle, higher = squircle, 4 = very obvious squircle
+        rounding_power = 2.5,
+        rounding = 18,
 
         blur = {
             enabled = true,
-            size = 4,
-            passes = 2,
-            noise = 0,
-            vibrancy = 0.60,
-            vibrancy_darkness = 0.2,
-            brightness = 0.9,
-            ignore_opacity = true,
+            xray = true,
+            special = false,
+            new_optimizations = true,
+            size = 10,
+            passes = 3,
+            brightness = 1,
+            noise = 0.05,
+            contrast = 0.89,
+            vibrancy = 0.5,
+            vibrancy_darkness = 0.5,
+            popups = false,
+            popups_ignorealpha = 0.6,
+            input_methods = true,
+            input_methods_ignorealpha = 0.8
+        },
+        shadow = {
+            enabled = true,
+            range = 20,
+            offset = {0, 2},
+            render_power = 10,
+            color = "rgba(00000020)"
+
         },
     },
 })

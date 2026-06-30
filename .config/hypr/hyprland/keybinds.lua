@@ -5,12 +5,13 @@ local terminal = "kitty"
 local browser = "brave"
 local fileManager = "nautilus -w"
 local clipboard = "kitty --class clipse -e 'clipse'"
-local ssCommand = "grim -g '$(slurp)' - | satty --filename - --output-filename ~/Pictures/Screenshots/Image-$(date '+%m%d-%H:%M').png"
+local ssCommand = "grim -g \"$(slurp)\" - | satty --filename - --output-filename ~/Pictures/Screenshots/Image-$(date '+%m%d-%H:%M').png"
 
-
+-- MainMod Key bind
+hl.bind(mainMod .. " + SUPER_L", hl.dsp.exec_cmd("qs ipc call launcher changeVisiblity"))
 -- Alphabet Key Binds
 
---hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(""))
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("android-studio"))
 --hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(""))
 hl.bind(mainMod .. " + C", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + D", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
