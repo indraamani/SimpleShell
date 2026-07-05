@@ -48,6 +48,10 @@ Variants {
             right: position === "right" && !isRevealed ? -(mainBar.width-1) : Preferences.bar.floating && Preferences.bar.margin
         }
 
+        SystemClock {
+            id: sysClock 
+            precision: SystemClock.Minutes
+        }
         Loader {
             active: true 
             sourceComponent: isVertical ? vertical : horizontal 
@@ -57,6 +61,7 @@ Variants {
                 id: vertical 
                 VerticalBar {
                     targetMonitor: modelData.name
+                    clockIns: sysClock
                 }
             }
 
@@ -64,6 +69,7 @@ Variants {
                 id: horizontal 
                 HorizontalBar {
                     targetMonitor: modelData.name
+                    clockIns: sysClock
                 }
             }
         } 
