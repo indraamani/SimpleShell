@@ -6,9 +6,9 @@ import Quickshell.Wayland
 import Quickshell.Io
 
 import qs.core
+import qs.bar 
 
 Variants {
-
     model: Quickshell.screens
 
     PanelWindow {
@@ -32,7 +32,7 @@ Variants {
 
         implicitHeight: !isVertical && Preferences.bar.barsize
         implicitWidth:  isVertical && Preferences.bar.barsize
-        color: "green"
+        color: "transparent"
 
         anchors {
             top: position === "top" || mainBar.isVertical
@@ -48,10 +48,24 @@ Variants {
             right: position === "right" && !isRevealed ? -(mainBar.width-1) : Preferences.bar.floating && Preferences.bar.margin
         }
 
-        MouseArea {
-            id: mouseArea 
-            hoverEnabled: true 
+        Loader {
+            active: true 
+            sourceComponent: isVertical ? vertical : horizontal 
             anchors.fill: parent
-        }
+
+            Component {
+                id: vertical 
+                VerticalBar {
+                    targetMonitor: modelData.name
+                }
+            }
+
+            Component {
+                id: horizontal 
+                HorizontalBar {
+                    targetMonitor: modelData.name
+                }
+            }
+        } 
     }
 }

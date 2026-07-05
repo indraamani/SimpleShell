@@ -2,7 +2,7 @@
     "bar": {
         "barsize": 52,
         "margin": 12,
-        "position": "right",
+        "position": "top",
         "background": "#323449",
         "floating": false,
         "autohide": false,
@@ -12,7 +12,6 @@
         "isvisible": true,
         "bgcolor": "#323449",
         "width": 7,
-        "radius": 24,
-        "a": 89
+        "radius": 24
     }
 }
