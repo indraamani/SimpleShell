@@ -2,7 +2,7 @@
     "bar": {
         "barsize": 42,
         "margin": 12,
-        "position": "top",
+        "position": "right",
         "background": "#323449",
         "floating": false,
         "autohide": false,
