@@ -2,12 +2,12 @@ pragma Singleton
 
 import QtQuick
 import Quickshell
-import Quickshell.Blutooth
+import Quickshell.Bluetooth
 
 Singleton {
 
-    readonly property var adapter: Blutooth.defaultAdapter
-    readonly property var connectedDevice: Blutooth.devices.values.filter(device => device.connected)
+    readonly property var adapter: Bluetooth.defaultAdapter
+    readonly property var connectedDevice: Bluetooth.devices.values.filter(device => device.connected)
     readonly property bool powered: adapter?.enabled ?? false
     readonly property bool connected: connectedDevice?.length > 0
     readonly property string deviceName: connected ? (connectedDevice[0]?.name ?? connectedDevice[0]?.alias ?? "Device") : ""

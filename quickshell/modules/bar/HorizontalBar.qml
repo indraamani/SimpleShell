@@ -3,39 +3,36 @@ import QtQuick.Layouts
 import Quickshell
 
 import qs.core
-import qs.bar.component
+import qs.modules.bar.component
 
 Rectangle {
-    id: verticalBar
+    id: horizontalBar
     property string targetMonitor: ""
     property QtObject clockIns
 
     anchors.fill: parent
     color: Preferences.bar.background
 
-    ColumnLayout {
+    RowLayout {
         anchors.fill: parent
         Workspaces {
             id: workspaces
-            targetMonitor: verticalBar.targetMonitor
+            targetMonitor: horizontalBar.targetMonitor
             anchors {
-                top: parent.top
-                horizontalCenter: parent.horizontalCenter
-                topMargin: 12
+                left: parent.left
+                verticalCenter: parent.verticalCenter
+                leftMargin: 12
             }
         }
 
         Text {
             anchors.centerIn: parent
-            text: Preferences.bar.position === "left" ? Qt.formatDateTime(clockIns.date, "ddd MMMM dd, hh:mm") : Qt.formatDateTime(clockIns.date, "ddd MMMM dd, hh:mm")
-
-            rotation: Preferences.bar.position === "left" ? 90 : 270
+            text: Qt.formatDateTime(clockIns.date, "ddd MMMM dd, hh:mm")
             font {
                 pixelSize: 16
                 bold: true
             }
             color: "#fff"
         }
-
     }
 }

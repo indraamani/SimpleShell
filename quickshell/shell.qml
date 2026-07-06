@@ -1,10 +1,10 @@
-import QtQuick 
+import QtQuick
 import Quickshell
 
-import qs.bar
+import qs.modules.bar
 
 ShellRoot {
-    id: shellRoot 
+    id: shellRoot
 
     /* Widgets for all Screen */
 

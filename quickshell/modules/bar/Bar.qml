@@ -1,21 +1,21 @@
-import QtQuick 
+import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
-import Quickshell 
-import Quickshell.Wayland 
+import Quickshell
+import Quickshell.Wayland
 import Quickshell.Io
 
 import qs.core
-import qs.bar 
+import qs.modules.bar
 
 Variants {
     model: Quickshell.screens
 
     PanelWindow {
-        id: mainBar 
+        id: mainBar
 
         property var modelData
-        screen: modelData 
+        screen: modelData
 
         property string position: Preferences.bar.position
         property bool isVertical: position === "left" || position === "right"
@@ -49,16 +49,16 @@ Variants {
         }
 
         SystemClock {
-            id: sysClock 
+            id: sysClock
             precision: SystemClock.Minutes
         }
         Loader {
-            active: true 
-            sourceComponent: isVertical ? vertical : horizontal 
+            active: true
+            sourceComponent: isVertical ? vertical : horizontal
             anchors.fill: parent
 
             Component {
-                id: vertical 
+                id: vertical
                 VerticalBar {
                     targetMonitor: modelData.name
                     clockIns: sysClock
@@ -66,12 +66,12 @@ Variants {
             }
 
             Component {
-                id: horizontal 
+                id: horizontal
                 HorizontalBar {
                     targetMonitor: modelData.name
                     clockIns: sysClock
                 }
             }
-        } 
+        }
     }
 }

@@ -1,8 +1,8 @@
 {
     "bar": {
-        "barsize": 52,
+        "barsize": 42,
         "margin": 12,
-        "position": "right",
+        "position": "top",
         "background": "#323449",
         "floating": false,
         "autohide": false,
