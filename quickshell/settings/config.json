@@ -2,16 +2,18 @@
     "bar": {
         "barsize": 42,
         "margin": 12,
-        "position": "right",
+        "position": "left",
         "background": "#323449",
         "floating": false,
         "autohide": false,
         "transparency": false
     },
     "bezel": {
-        "isvisible": true,
+        "active": true,
         "bgcolor": "#323449",
-        "width": 7,
-        "radius": 24
+        "shadow": true,
+        "shadowcolor": "#B0000000",
+        "width": 0,
+        "radius": 26
     }
 }

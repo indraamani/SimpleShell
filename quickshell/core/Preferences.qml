@@ -35,6 +35,8 @@ QtObject {
             property JsonObject bezel: JsonObject {
                 property bool isvisible: false 
                 property string bgcolor: "#ffffff"
+                property bool shadow: true
+                property string shadowcolor: "#B0000000"
                 property int width: 7
                 property int radius: 8
             }
