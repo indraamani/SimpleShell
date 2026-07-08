@@ -4,6 +4,7 @@ import Quickshell
 import qs.core 
 import qs.modules.bar
 import qs.modules.bezels
+import qs.widgets
 
 ShellRoot {
     id: shellRoot
@@ -20,4 +21,5 @@ ShellRoot {
 
     /* Widgets for only main screen */
 
+    DayTimeWidget { }
 }
