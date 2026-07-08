@@ -4,6 +4,7 @@ import Quickshell
 import qs.core 
 import qs.modules.bar
 import qs.modules.bezels
+import qs.modules.launcher
 import qs.widgets
 
 ShellRoot {
@@ -18,6 +19,8 @@ ShellRoot {
         active: Preferences.bezel.active
         source: "./modules/bezels/Bezels.qml"
     }
+
+    Launcher { }
 
     /* Widgets for only main screen */
 
