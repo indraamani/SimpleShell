@@ -29,7 +29,6 @@ Variants {
         WlrLayershell.exclusiveZone: Preferences.bar.autohide ? -1 : Preferences.bar.barsize
         WlrLayershell.namespace: "quickshell.topbar"
 
-
         implicitHeight: !isVertical && Preferences.bar.barsize
         implicitWidth:  isVertical && Preferences.bar.barsize
         color: "transparent"

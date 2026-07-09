@@ -86,7 +86,6 @@ Rectangle {
                 onClicked: {
                     if (typeof modelData == "boolean" && modelData) {
                         // TODO: Build Workspace Manager 
-                        Network.toggleWifi()
                     } else {
                         Hyprland.dispatch(`
                             hl.dsp.focus({

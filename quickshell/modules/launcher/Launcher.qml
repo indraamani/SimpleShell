@@ -16,7 +16,7 @@ PanelWindow {
     implicitHeight: 460 
     implicitWidth: 600
 
-    visible: true 
+    visible: false 
     focusable: true
 
     color: "transparent"

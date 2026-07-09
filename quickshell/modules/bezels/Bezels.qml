@@ -2,8 +2,10 @@ import QtQuick
 import QtQuick.Effects
 import Quickshell
 import Quickshell.Wayland
+import Quickshell.Hyprland
 
 import qs.core
+import qs.services 
 
 Variants {
     id: bezels
@@ -15,6 +17,8 @@ Variants {
         required property var modelData
         screen: modelData
 
+        readonly property HyprlandMonitor monitor: Hyprland.monitorFor(screen)
+        visible: !FullScreenState.isFullscreen(monitor)
         color: "transparent"
 
         WlrLayershell.layer: WlrLayer.Overlay
