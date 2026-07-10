@@ -1,11 +1,9 @@
-import Quickshell 
-import QtQuick 
+import Quickshell
+import QtQuick
 import QtQuick.Layouts
 import Quickshell.Wayland
 import Quickshell.Widgets
-import Quickshell.Io 
-import Quickshell.Hyprland
-import QtQuick.Effects
+import Quickshell.Io
 
 import qs.core
 import qs.services
@@ -13,10 +11,9 @@ import qs.services
 PanelWindow {
     id: launcher
 
-    implicitHeight: 460 
-    implicitWidth: 600
+    implicitHeight: 460
+    implicitWidth: 600 
 
-    visible: false 
     focusable: true
 
     color: "transparent"
@@ -37,162 +34,165 @@ PanelWindow {
 
     DesktopEntriesModel {
         id: applicationModel
-
         inputText: inputField.text
     }
 
     Rectangle {
-	    anchors.fill: parent 
-	    radius: 8 
-	    color: Preferences.bar.background
+        anchors.fill: parent
+        radius: 8
+        color: Preferences.bar.background
 
-    	ColumnLayout {
-            anchors.fill: parent
+        Rectangle {
+            id: textfield
 
-            Rectangle {
-                id: textfield
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: parent.top
+            }
+            implicitHeight: 50
+            radius: 8
+            color: "#a48cf2"
+
+            /*MouseArea {
+                anchors.fill: parent
+                onClicked: inputField.forceActiveFocus()
+            }*/
+
+            TextInput {
+                id: inputField
+                focus: true
+                verticalAlignment: Text.AlignVCenter
+
                 anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
+                    leftMargin: 15
+                    rightMargin: 15
+                    fill: parent
                 }
-                radius: 8
 
-                implicitHeight: 50
-                color: "#a48cf2"
+                font {
+                    family: localFont.font.family
+                    pixelSize: 16
+                    bold: true
+                }
+
+                Text {
+                    id: placeholder
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: "\uf002  Enter..."
+                    visible: inputField.text.length === 0
+                    font {
+                        family: localFont.font.family
+                        pixelSize: 16
+                        bold: true
+                    }
+                }
+                onTextEdited: {
+                    if(inputField.text[0] === '>') 
+                        inputField.text = "\uf054 "
+                }
+
+                onAccepted: {
+                    if(inputField.text[0] === '\uf054') {
+                        Quickshell.execDetached({ command: inputField.text.slice(2).split(" ") })
+                        shellRoot.launcher = false
+                    }
+                }
+            }
+        }
+
+        GridView {
+            id: appGridView
+
+            anchors {
+                top: textfield.bottom
+                bottom: parent.bottom
+                left: parent.left
+                right: parent.right
+            }
+
+            clip: true
+            cellWidth: width / 4
+            cellHeight: 110
+
+            model: applicationModel
+
+            NumberAnimation {
+                id: smoothScrollAnim
+                target: appGridView
+                property: "contentY"
+                duration: 350
+                easing.type: Easing.OutCubic
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                propagateComposedEvents: true
+
+                onWheel: wheel => {
+                    let startPos = smoothScrollAnim.running ? smoothScrollAnim.to : appGridView.contentY;
+
+                    let delta = -wheel.angleDelta.y * 1.2;
+                    let targetPos = startPos + delta;
+
+                    let maxScroll = Math.max(0, appGridView.contentHeight - appGridView.height);
+                    targetPos = Math.max(0, Math.min(targetPos, maxScroll));
+
+                    smoothScrollAnim.stop();
+                    smoothScrollAnim.to = targetPos;
+                    smoothScrollAnim.start();
+
+                    wheel.accepted = true;
+                }
+
+                onClicked: mouse => mouse.accepted = false
+                onPressed: mouse => mouse.accepted = false
+                onReleased: mouse => mouse.accepted = false
+            }
+            delegate: Item {
+                width: appGridView.cellWidth
+                height: appGridView.cellHeight
+
+                Rectangle {
+                    anchors.fill: parent
+                    anchors.margins: 4
+                    color: gridMouse.containsMouse ? "#269D82F2" : Preferences.bar.background
+                    radius: 4
+                    /* #0D9D82F2 -> Super subtle, #1A9D82F2 -> Gentle glow, #269D82F2 -> Distinct */ 
+                }
 
                 MouseArea {
-                    anchors.fill: parent 
-                    onClicked: inputField.forceActiveFocus()
+                    id: gridMouse
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onClicked: {
+                        shellRoot.launcher = false
+                        modelData.execute();
+                    }
                 }
 
-                TextInput {
-                    id: inputField
-                    focus: true
-                    verticalAlignment: Text.AlignVCenter
+                Column {
+                    anchors.centerIn: parent
+                    width: parent.width - 16
+                    spacing: 8
 
-                    anchors {
-                        leftMargin: 15 
-                        rightMargin: 15 
-                        fill: parent 
-                    }
-
-                    font {
-                        family: localFont.font.family 
-                        pixelSize: 16 
-                        bold: true
+                    IconImage {
+                        width: 48
+                        height: 48
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        source: Quickshell.iconPath(modelData.icon)
                     }
 
                     Text {
-                        id: placeholder
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "\uf002  Enter..." 
+                        text: modelData.name
+                        width: parent.width
+                        horizontalAlignment: Text.AlignHCenter
+                        elide: Text.ElideRight
+                        color: "white"
                         font {
-                            family: localFont.font.family 
-                            pixelSize: 16 
+                            family: localFont.font.family
+                            pixelSize: 12
                             bold: true
-                        }
-                    }
-
-                    onTextChanged: {
-                        if(text.length >= 1) {
-                            placeholder.visible = false 
-                        } else {
-                            placeholder.visible = true
-                        }
-                    }
-
-                }
-            }
-            
-            Flickable {
-                id: scrollViewport
-                anchors {
-                    top: textfield.bottom
-                    bottom: parent.bottom
-                    left: parent.left
-                    right: parent.right
-                    topMargin: 12 
-                    bottomMargin: 12      
-                }
-                contentHeight: grid.height  
-                clip: true
-                pressDelay: 0
-
-
-                Grid {
-                    id: grid
-
-                    anchors {
-                        top: textfield.bottom
-                        left: parent.left 
-                        right: parent.right 
-                        margins: 10
-                    }
-
-                    columns: 4
-                    spacing: 10
-
-                    Repeater {
-                        model: applicationModel
-
-                        delegate:  Rectangle {
-                            width: (grid.width - (grid.spacing * (grid.columns - 1))) / grid.columns
-                            height: 100
-                            color: mouseArea.containsMouse ? Preferences.bar.background : "transparent"
-                            opacity: 0.8 
-                            radius: 4
-
-                            ColumnLayout {
-                                anchors.fill: parent
-                                anchors.margins: 10
-
-                                Image {
-                                    Layout.preferredWidth: 48  
-                                    Layout.preferredHeight: 48 
-                                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-
-                                    source: Quickshell.iconPath(modelData.icon)
-                                }
-
-                                Text {
-                                    text: modelData.name
-                                    Layout.fillWidth: true
-
-                                    horizontalAlignment: Text.AlignHCenter
-                                    verticalAlignment: Text.AlignVCenter
-
-                                    elide: Text.ElideRight
-                                    wrapMode: Text.Wrap
-                                    maximumLineCount: 1
-                                    anchors.bottom: parent.bottom
-                                    
-
-                                    color: "white"
-                                    font {
-                                        family: localFont.font.family 
-                                        pixelSize: 12 
-                                        bold: true
-                                    }
-                                }
-
-                                MouseArea {
-                                    id: mouseArea
-                                    anchors.fill: parent 
-                                    hoverEnabled: true
-
-                                    onClicked: {
-                                        launcher.visible = false;
-                                        modelData.execute()
-                                    }
-                                } 
-                            }
-
-                            Behavior on color {
-                                ColorAnimation {
-                                    duration: 460 
-                                } 
-                            }
                         }
                     }
                 }
@@ -200,4 +200,3 @@ PanelWindow {
         }
     }
 }
-
