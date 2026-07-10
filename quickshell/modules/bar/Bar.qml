@@ -26,6 +26,7 @@ Variants {
             return mouseArea.containsMouse
         }
 
+        // TODO: fix 
         WlrLayershell.exclusiveZone: Preferences.bar.autohide ? -1 : Preferences.bar.barsize
         WlrLayershell.namespace: "quickshell.topbar"
 
@@ -71,6 +72,12 @@ Variants {
                     clockIns: sysClock
                 }
             }
+        }
+        MouseArea {
+            id: mouseArea
+            anchors.fill: parent 
+            hoverEnabled: true 
+            propagateComposedEvents: true
         }
     }
 }

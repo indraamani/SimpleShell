@@ -167,7 +167,8 @@ PanelWindow {
                     hoverEnabled: true
                     onClicked: {
                         shellRoot.launcher = false
-                        modelData.execute();
+                        modelData.runInTerminal ? 
+                            Quickshell.execDetached({ command: ["kitty", "-e", modelData.command] }) : modelData.execute();
                     }
                 }
 

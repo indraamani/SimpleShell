@@ -20,7 +20,7 @@ ShellRoot {
 
     Loader {
         id: networkLoader
-        active: Preferences.bezel.active
+        active: Preferences.bar.floating ? false : Preferences.bezel.active
         source: "./modules/bezels/Bezels.qml"
     }
 

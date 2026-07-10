@@ -13,6 +13,8 @@ Rectangle {
     anchors.fill: parent
     color: Preferences.bar.background
 
+    radius: Preferences.bar.floating && Preferences.bar.radius
+
     Workspaces {
         id: workspaces
         targetMonitor: verticalBar.targetMonitor

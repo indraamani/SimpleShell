@@ -9,9 +9,9 @@ ScriptModel {
         const allEntries = [...DesktopEntries.applications.values]
 
         if (inputText == "") {
-            return allEntries
+            return allEntries.sort((a,b) => a.name.localeCompare(b.name))
         }
 
-        return allEntries.filter(elem => elem.name.toLowerCase().includes(inputText.toLowerCase()))
+        return allEntries.filter(elem => elem.name.toLowerCase().includes(inputText.toLowerCase())).sort((a,b) => a.name.localeCompare(b.name))
     }
 }

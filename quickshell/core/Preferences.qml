@@ -27,8 +27,9 @@ QtObject {
                 property int margin: 0
                 property string position: "top"
                 property string background: "#ffffff"
-                property bool floating: false 
                 property bool autohide: false 
+                property bool floating: false 
+                property int radius: 0 
                 property bool transparency: true 
             }
 

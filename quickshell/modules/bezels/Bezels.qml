@@ -32,11 +32,12 @@ Variants {
             right: true
         }
 
+        // TODO: fix
         margins {
-            top: Preferences.bar.position === "top" ? Preferences.bar.barsize : 0
-            bottom: Preferences.bar.position === "bottom" ? Preferences.bar.barsize : 0 
-            left: Preferences.bar.position === "left" ? Preferences.bar.barsize : 0
-            right: Preferences.bar.position === "right" ? Preferences.bar.barsize : 0
+            top: Preferences.bar.position === "top" ? (Preferences.bar.autohide ? 0 : Preferences.bar.barsize) : 0
+            bottom: Preferences.bar.position === "bottom" ? (Preferences.bar.autohide ? 0 : Preferences.bar.barsize) : 0 
+            left: Preferences.bar.position === "left" ? (Preferences.bar.autohide ? 0 : Preferences.bar.barsize) : 0
+            right: Preferences.bar.position === "right" ? (Preferences.bar.autohide ? 0 : Preferences.bar.barsize) : 0
         }
 
         mask: Region {

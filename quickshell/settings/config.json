@@ -1,11 +1,12 @@
 {
     "bar": {
         "barsize": 42,
-        "margin": 12,
-        "position": "left",
+        "margin": 8,
+        "position": "top",
         "background": "#323449",
-        "floating": false,
         "autohide": false,
+        "floating": true,
+        "radius": 8,
         "transparency": false
     },
     "bezel": {
