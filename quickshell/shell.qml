@@ -12,14 +12,20 @@ ShellRoot {
     id: shellRoot
     objectName: "shellRoot"
 
-    property bool launcher: false 
+    property bool launcher: false
+    property bool bar: true
+
 
     /* Widgets for all Screen */
+    LazyLoader {
+        id: barLoader
+        active: bar 
+        source: "./modules/bar/Bar.qml"
 
-    Bar { }
+    }
 
     Loader {
-        id: networkLoader
+        id: bezelLoader
         active: Preferences.bar.floating ? false : Preferences.bezel.active
         source: "./modules/bezels/Bezels.qml"
     }
@@ -30,19 +36,19 @@ ShellRoot {
         source: "./modules/launcher/Launcher.qml"
     }
 
-    /* Widgets for only main screen */
-
-    DayTimeWidget { }
-
-
     /*Global IpcHandlers */
 
     IpcHandler {
-        target: "launcher"
+        target: "toggle"
 
-        function changeVisiblity() {
+        function toggleBar() {
+            shellRoot.bar = !shellRoot.bar
+        }
+
+        function toggleLauncher() {
             shellRoot.launcher = !shellRoot.launcher
         }
+
     }
 
 }

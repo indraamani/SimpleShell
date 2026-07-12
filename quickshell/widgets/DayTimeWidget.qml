@@ -1,22 +1,10 @@
 import QtQuick 
 import Quickshell 
-import Quickshell.Wayland
 import QtQuick.Layouts
 import QtQuick.Effects
 
-PanelWindow {
+Item {
  
-    WlrLayershell.layer: WlrLayer.Background
-    exclusiveZone: 0
-    
-    anchors {
-        top: true
-    }
-
-    margins {
-      top: 80
-    }
-
     implicitWidth: 1200
     implicitHeight: 260
     color: "transparent"
@@ -72,7 +60,7 @@ PanelWindow {
             
             Text {
                 textFormat: Text.RichText
-                text: Qt.formatDateTime(sysTime.date, "dd:MM:yyyy")
+                text: Qt.formatDateTime(sysTime.date, "dd MM yyyy")
                 font {
                     family: "Cascadia Code NF"
                     pixelSize: 34

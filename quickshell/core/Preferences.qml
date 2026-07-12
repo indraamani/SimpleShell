@@ -9,7 +9,7 @@ QtObject {
     /* All Available Properties */ 
     readonly property JsonObject bar: jsonAdapter.bar
     readonly property JsonObject bezel: jsonAdapter.bezel
-
+    
     property var _fileView : FileView {
         path: Quickshell.shellPath("settings/config.json")
         watchChanges: true

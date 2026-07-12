@@ -5,7 +5,7 @@
         "position": "top",
         "background": "#323449",
         "autohide": false,
-        "floating": true,
+        "floating": false,
         "radius": 8,
         "transparency": false
     },
