@@ -40,12 +40,6 @@ Item {
             }
 
             color: {
-                if (!isEnabled) {
-                    return "gray"
-                }
-                if (!isConnected) {
-                    return "gray"
-                }
                 if (mouseArea.containsMouse) {
                     return "whitesmoke"
                 }
@@ -81,10 +75,9 @@ Item {
             }
 
             font {
+                family: Preferences.defaultFont.font.family
                 pixelSize: 12
                 weight: isConnected ? Font.Medium : Font.Normal
-                italic: false
-
             }
             elide: Text.ElideRight
             color: "white"

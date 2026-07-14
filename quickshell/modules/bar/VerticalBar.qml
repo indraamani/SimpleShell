@@ -31,6 +31,7 @@ Rectangle {
 
         rotation: Preferences.bar.position === "left" ? 90 : 270
         font {
+            family: Preferences.defaultFont.font.family
             pixelSize: 16
             bold: true
         }

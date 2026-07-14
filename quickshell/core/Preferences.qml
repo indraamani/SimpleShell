@@ -7,8 +7,16 @@ QtObject {
     id: globalConfig
 
     /* All Available Properties */ 
+    readonly property JsonObject shell: jsonAdapter.shell
     readonly property JsonObject bar: jsonAdapter.bar
     readonly property JsonObject bezel: jsonAdapter.bezel
+
+
+    property var defaultFont: FontMetrics {
+        id: localFont
+        font.family: shell.font
+        font.styleName: "Regular"
+    } 
     
     property var _fileView : FileView {
         path: Quickshell.shellPath("settings/config.json")
@@ -21,6 +29,10 @@ QtObject {
 
         JsonAdapter {
             id: jsonAdapter 
+
+            property JsonObject shell: JsonObject {
+                property string font: "JetBrainsMonoNL Nerd Font"
+            }
 
             property JsonObject bar: JsonObject {
                 property int barsize: 42

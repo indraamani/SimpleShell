@@ -6,6 +6,7 @@ import qs.core
 import qs.modules.bar
 import qs.modules.bezels
 import qs.modules.launcher
+import qs.modules.wallpicker
 import qs.widgets
 
 ShellRoot {
@@ -14,6 +15,7 @@ ShellRoot {
 
     property bool launcher: false
     property bool bar: true
+    property bool wallpicker: false 
 
 
     /* Widgets for all Screen */
@@ -23,10 +25,15 @@ ShellRoot {
         source: "./modules/bar/Bar.qml"
 
     }
+    Loader {
+        id: wallpickerLoader
+        active: wallpicker 
+        source: "./modules/wallpicker/Wallpicker.qml"
 
+    }
     Loader {
         id: bezelLoader
-        active: Preferences.bar.floating ? false : Preferences.bezel.active
+        active: Preferences.bar.floating || !bar ? false : Preferences.bezel.active
         source: "./modules/bezels/Bezels.qml"
     }
 
@@ -49,6 +56,9 @@ ShellRoot {
             shellRoot.launcher = !shellRoot.launcher
         }
 
+        function toggleWallpicker() {
+            shellRoot.wallpicker = !shellRoot.wallpicker
+        }
     }
 
 }

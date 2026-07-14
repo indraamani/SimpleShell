@@ -68,10 +68,9 @@ Item {
             }
 
             font {
+                family: Preferences.defaultFont.font.family
                 pixelSize: 12
                 weight: hasConnection ? Font.Medium : Font.Normal
-                italic: false
-
             }
             elide: Text.ElideRight
             color: "white"

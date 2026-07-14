@@ -26,12 +26,6 @@ PanelWindow {
         }
     }
 
-    FontMetrics {
-        id: localFont
-        font.family: "JetBrainsMonoNL Nerd Font"
-        font.styleName: "Regular"
-    }
-
     DesktopEntriesModel {
         id: applicationModel
         inputText: inputField.text
@@ -71,7 +65,7 @@ PanelWindow {
                 }
 
                 font {
-                    family: localFont.font.family
+                    family: Preferences.defaultFont.font.family
                     pixelSize: 16
                     bold: true
                 }
@@ -82,7 +76,7 @@ PanelWindow {
                     text: "\uf002  Enter..."
                     visible: inputField.text.length === 0
                     font {
-                        family: localFont.font.family
+                        family: Preferences.defaultFont.font.family
                         pixelSize: 16
                         bold: true
                     }
@@ -191,7 +185,7 @@ PanelWindow {
                         elide: Text.ElideRight
                         color: "white"
                         font {
-                            family: localFont.font.family
+                            family: Preferences.defaultFont.font.family
                             pixelSize: 12
                             bold: true
                         }
