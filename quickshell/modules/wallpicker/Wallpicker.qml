@@ -59,7 +59,7 @@ PanelWindow {
             }
 
             Text {
-                text: "91 total"
+                text: wallpaperModel.count +" total"
                 color: "white"
                 verticalAlignment: Text.AlignVCenter
                 font {
@@ -128,7 +128,6 @@ PanelWindow {
 
                 TapHandler {
                 onTapped: {
-                
                     Quickshell.execDetached({ command: ["awww", "img", "-t", "random", "/home/indra/.local/share/wallpapers/"+fileName] });
                     //wallpaperList.currentIndex = model.index
                     shellRoot.wallpicker = false 

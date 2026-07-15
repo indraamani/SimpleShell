@@ -53,6 +53,9 @@ ShellRoot {
         }
 
         function toggleLauncher() {
+            if(shellRoot.wallpicker) {
+                shellRoot.wallpicker = false 
+            }
             shellRoot.launcher = !shellRoot.launcher
         }
 
