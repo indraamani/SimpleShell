@@ -86,8 +86,9 @@ PanelWindow {
                 showOnlyReadable: true
             }
             spacing: 20
-            anchors.margins: 20
+            anchors.margins: 18
             clip: true 
+            focus: true
             snapMode: ListView.SnapToItem
             highlightRangeMode: ListView.ApplyRange //StrictlyEnforceRange
             preferredHighlightBegin: width / 2 - itemWidth / 2
@@ -98,17 +99,28 @@ PanelWindow {
             cacheBuffer: itemWidth * 3
             flickDeceleration: 1500 
 
+
+            Keys.onLeftPressed: decrementCurrentIndex() 
+            Keys.onRightPressed: incrementCurrentIndex() 
+            /*Keys.onReturnPressed: {
+                Quickshell.execDetached({ command: ["awww", "img", "-t", "random", "/home/indra/.local/share/wallpapers/"+ wallpaperModel.get(currentIndex, "fileName")] });
+                shellRoot.wallpicker = false
+            }*/ 
+
             Behavior on currentIndex {
                 NumberAnimation {
                     duration: 350
                 }
             }
 
-            delegate: Rectangle {
+            delegate: ClippingRectangle {
                 height: 180
                 width: 320 
                 radius: 20
                 clip: true
+
+                layer.enabled: true
+                layer.smooth: true
 
                 Behavior on scale {
                     NumberAnimation {
@@ -127,12 +139,12 @@ PanelWindow {
                 }    
 
                 TapHandler {
-                onTapped: {
-                    Quickshell.execDetached({ command: ["awww", "img", "-t", "random", "/home/indra/.local/share/wallpapers/"+fileName] });
-                    //wallpaperList.currentIndex = model.index
-                    shellRoot.wallpicker = false 
+                    onTapped: {
+                        Quickshell.execDetached({ command: ["awww", "img", "-t", "random", "/home/indra/.local/share/wallpapers/"+fileName] });
+                        //wallpaperList.currentIndex = model.index
+                        shellRoot.wallpicker = false 
+                    }
                 }
-            }
             } 
         }
     }

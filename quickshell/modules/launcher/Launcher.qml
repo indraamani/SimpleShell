@@ -35,6 +35,7 @@ PanelWindow {
         anchors.fill: parent
         radius: 8
         color: Preferences.bar.background
+        focus: true 
 
         Rectangle {
             id: textfield
@@ -143,6 +144,11 @@ PanelWindow {
                 onPressed: mouse => mouse.accepted = false
                 onReleased: mouse => mouse.accepted = false
             }
+
+            Keys.onPressed: (event) => {
+                console.log(event.key)
+            }
+
             delegate: Item {
                 width: appGridView.cellWidth
                 height: appGridView.cellHeight
