@@ -33,7 +33,7 @@ PanelWindow {
 
     Rectangle {
         anchors.fill: parent
-        radius: 8
+        //radius: 8
         color: Preferences.bar.background
         focus: true 
 
@@ -46,7 +46,7 @@ PanelWindow {
                 top: parent.top
             }
             implicitHeight: 50
-            radius: 8
+            //radius: 8
             color: "#a48cf2"
 
             /*MouseArea {

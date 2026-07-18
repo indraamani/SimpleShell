@@ -141,6 +141,7 @@ PanelWindow {
                 TapHandler {
                     onTapped: {
                         Quickshell.execDetached({ command: ["awww", "img", "-t", "random", "/home/indra/.local/share/wallpapers/"+fileName] });
+                        Quickshell.execDetached({ command: ["matugen", "image", "/home/indra/.local/share/wallpapers/"+fileName, "--source-color-index", "0"] });
                         //wallpaperList.currentIndex = model.index
                         shellRoot.wallpicker = false 
                     }

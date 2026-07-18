@@ -12,6 +12,7 @@ Rectangle {
 
     anchors.fill: parent
     color: Preferences.bar.background
+    opacity: 0.8
 
     radius: Preferences.bar.floating && Preferences.bar.radius
 

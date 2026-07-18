@@ -67,8 +67,9 @@ Variants {
                     id: bezelBackground
                     anchors.fill: parent
                     color: Preferences.bezel.bgcolor
+                    opacity: 0.8
                     layer.enabled: true
-
+                    
                     layer.effect: MultiEffect {
                         maskSource: cutoutShape
                         maskEnabled: true
@@ -88,7 +89,7 @@ Variants {
                 Rectangle {
                     id: clippingRect
                     anchors.fill: parent
-
+                    
                     anchors {
                         leftMargin: Preferences.bar.position === "left" ? 0 : Preferences.bezel.width 
                         rightMargin: Preferences.bar.position === "right" ? 0 : Preferences.bezel.width
