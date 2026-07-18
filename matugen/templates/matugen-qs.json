@@ -1,0 +1,23 @@
+{
+    "shell": {
+        "font": "GeistMono Nerd Font Mono"
+    },
+    "bar": {
+        "barsize": 42,
+        "margin": 8,
+        "position": "top",
+        "background": "{{ colors.surface.default.hex }}",
+        "autohide": false,
+        "floating": false,
+        "radius": 8,
+        "transparency": false
+    },
+    "bezel": {
+        "active": true,
+        "bgcolor": "{{ colors.surface.default.hex }}",
+        "shadow": true,
+        "shadowcolor": "#B0000000",
+        "width": 0,
+        "radius": 26
+    }
+}
