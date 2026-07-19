@@ -100,8 +100,12 @@ PanelWindow {
             flickDeceleration: 1500 
 
 
-            Keys.onLeftPressed: decrementCurrentIndex() 
-            Keys.onRightPressed: incrementCurrentIndex() 
+            Keys.onLeftPressed: {
+                wallpaperList.currentIndex = wallpaperList.currentIndex > 1 && wallpaperList.currentIndex - 1
+            }
+            Keys.onRightPressed: {
+                wallpaperList.currentIndex = wallpaperList.currentIndex <= wallpaperList.count &&  wallpaperList.currentIndex + 1
+            } 
             /*Keys.onReturnPressed: {
                 Quickshell.execDetached({ command: ["awww", "img", "-t", "random", "/home/indra/.local/share/wallpapers/"+ wallpaperModel.get(currentIndex, "fileName")] });
                 shellRoot.wallpicker = false

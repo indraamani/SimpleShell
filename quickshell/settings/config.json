@@ -6,7 +6,7 @@
         "barsize": 42,
         "margin": 8,
         "position": "top",
-        "background": "#101418",
+        "background": "#131318",
         "autohide": false,
         "floating": false,
         "radius": 8,
@@ -14,7 +14,7 @@
     },
     "bezel": {
         "active": true,
-        "bgcolor": "#101418",
+        "bgcolor": "#131318",
         "shadow": true,
         "shadowcolor": "#B0000000",
         "width": 0,
